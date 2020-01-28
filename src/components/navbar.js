@@ -1,12 +1,11 @@
 import React, { Component } from "react"
 import { Link } from 'gatsby';
-import styles from './navbar.module.scss';
-
+// import styles from './navbar.module.scss';
 
 class Navbar extends Component {
   render() {
     return (
-      <nav className={styles.navbar}>
+      <nav>
         <h2>Company</h2>
         <ul>
           <li>

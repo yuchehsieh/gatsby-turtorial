@@ -2,6 +2,8 @@ import React from "react"
 import { Link } from "gatsby"
 import Layout from "../components/layout"
 
+import { Button } from "../components/button"
+
 export default () => (
   <Layout>
     <h1 className="title">
@@ -18,5 +20,6 @@ export default () => (
       {/*<a href="/product/">product page</a>*/}
       <Link to="/product">product page</Link>
     </div>
+    <Button>STYLED COMPONENT</Button>
   </Layout>
 );
