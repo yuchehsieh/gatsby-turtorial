@@ -1,16 +1,17 @@
 import React, { Component } from "react"
 import { Link} from 'gatsby';
+import Layout from "../components/layout"
 
 class Product extends Component {
   render() {
     return (
-      <div>
-        This is Product page
+      <Layout>
+        <h1>This is Product page</h1>
         <div>
           {/*<a href="/">Home Page</a>*/}
           <Link to="/">home page</Link>
         </div>
-      </div>
+      </Layout>
     )
   }
 }
