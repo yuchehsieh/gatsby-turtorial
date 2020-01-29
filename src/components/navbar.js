@@ -1,5 +1,6 @@
 import React, { Component } from "react"
-import { Link } from 'gatsby';
+import { Link } from "gatsby"
+
 // import styles from './navbar.module.scss';
 
 class Navbar extends Component {
@@ -13,10 +14,13 @@ class Navbar extends Component {
           </li>
           <li>
             <Link to="/blog/">Blog</Link>
-        </li>
-        <li>
-          <Link to="/product">Product</Link>
-        </li>
+          </li>
+          <li>
+            <Link to="/product">Product</Link>
+          </li>
+          <li>
+            <Link to="/examples">Examples</Link>
+          </li>
         </ul>
       </nav>
     )
