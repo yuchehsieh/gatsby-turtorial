@@ -2,11 +2,12 @@ import React from "react";
 import {graphql} from 'gatsby';
 import HeaderHooks from '../examples/header-hooks';
 import HeaderStatic from "../examples/header-static"
+import Layout from "../components/layout"
 
 const Examples = (props) => {
   console.log(props);
   return (
-    <div>
+    <Layout>
       examples page
       <HeaderHooks/>
       <HeaderStatic />
@@ -14,7 +15,7 @@ const Examples = (props) => {
       <h4>Page Query Result: </h4>
       <p>{props.data.site.siteMetadata.description}</p>
 
-    </div>
+    </Layout>
   )
 }
 
