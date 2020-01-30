@@ -19,5 +19,16 @@ module.exports = {
         // Add any options here
       },
     },
+    {
+      /**
+       *  can point more than 1 folder,
+       *  __dirname pointing the folder where the file is located!
+       */
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: `${__dirname}/src/images/`,
+      },
+    },
   ]
 }
