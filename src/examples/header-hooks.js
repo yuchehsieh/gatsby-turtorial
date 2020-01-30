@@ -14,7 +14,7 @@ const getData = graphql
       }
   `
 
-const Header = () => {
+const HeaderHooks = () => {
 
   const { site: { siteMetadata: { author, title } } } = useStaticQuery(getData)
 
@@ -27,4 +27,4 @@ const Header = () => {
   )
 }
 
-export default Header
+export default HeaderHooks
