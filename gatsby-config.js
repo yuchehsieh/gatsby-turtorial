@@ -13,6 +13,12 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-sass`,
+
+    /**
+     * the following two packages that gatsby-image need!
+     */
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-plugin-styled-components`,
       options: {
