@@ -12,6 +12,28 @@ const Tours = ({ data }) => {
     )
 }
 
+/**
+ *
+ * using netlify-webhook to trigger rebuild
+ * while contentful's data got changed
+ *
+ * 1. Netlify > Deploys > Deploy settings > (scroll down) > Build hooks
+ * > (get unique url to trigger rebuild)
+ *
+ * 2. Contentful > Settings > Web hooks(down below API keys) > (right side)
+ * > Add Webhook > (paste the unique url)
+ */
+
+/**
+ *
+ * Keep in mind, when going to trigger build, have to set the .env.production
+ * or it will failed.
+ *
+ * Not only in netlify, can specific the url in share-hosting by drag the whole
+ * public folder to it
+ *
+ */
+
 export const getTours = graphql`
     query {
       tours: allContentfulTour {
