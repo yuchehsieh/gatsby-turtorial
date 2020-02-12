@@ -56,5 +56,6 @@ module.exports = {
       },
     },
     `gatsby-plugin-playground`,
+    `gatsby-plugin-transition-link`
   ]
 }

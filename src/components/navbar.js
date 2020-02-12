@@ -1,5 +1,6 @@
 import React, { Component } from "react"
-import { Link } from "gatsby"
+// import { Link } from "gatsby"
+import AniLink from "gatsby-plugin-transition-link/AniLink";
 
 import styles from './navbar.module.scss';
 
@@ -10,22 +11,22 @@ class Navbar extends Component {
         <h2>Company</h2>
         <ul>
           <li>
-            <Link to="/">Home</Link>
+            <AniLink fade to="/">Home</AniLink>
           </li>
           <li>
-            <Link to="/blog/">Blog</Link>
+            <AniLink fade to="/blog/">Blog</AniLink>
           </li>
           <li>
-            <Link to="/product">Product</Link>
+            <AniLink fade to="/product">Product</AniLink>
           </li>
           <li>
-            <Link to="/examples">Examples</Link>
+            <AniLink fade to="/examples">Examples</AniLink>
           </li>
           <li>
-            <Link to="/images">Images</Link>
+            <AniLink fade to="/images">Images</AniLink>
           </li>
           <li>
-            <Link to="/tours">Tours</Link>
+            <AniLink fade to="/tours">Tours</AniLink>
           </li>
         </ul>
       </nav>
