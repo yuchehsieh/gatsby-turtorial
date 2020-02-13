@@ -18,7 +18,7 @@ module.exports = {
     author: '@murphy',
     twitterUsername: '@murphy_hsieh',
     image: '/image-1.jpeg',
-    siteUrl: 'https://admiring-blackwell-5a6d08.netlify.com'
+    siteUrl: 'https://gatsby-tutorial-murphy-edition.netlify.com'
   },
   plugins: [
     `gatsby-plugin-sass`,
