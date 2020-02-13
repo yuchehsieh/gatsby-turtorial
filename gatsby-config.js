@@ -62,6 +62,15 @@ module.exports = {
     },
     `gatsby-plugin-playground`,
     `gatsby-plugin-transition-link`,
-    `gatsby-plugin-react-helmet`
+    `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-sitemap`,
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        host: 'https://gatsby-tutorial-murphy-edition.netlify.com',
+        sitemap: 'https://gatsby-tutorial-murphy-edition.netlify.com/sitemap.xml',
+        policy: [{ userAgent: '*', allow: '/' }]
+      }
+    },
   ]
 }
