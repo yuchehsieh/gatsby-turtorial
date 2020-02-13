@@ -13,7 +13,9 @@ module.exports = {
     title: 'tutorial',
     description: 'just some description about our site',
     author: '@murphy',
-    data: ['item1', 'item2', 'item3']
+    twitterUsername: '@murphy_hsieh',
+    image: '/image-1.jpeg',
+    siteUrl: 'https://admiring-blackwell-5a6d08.netlify.com'
   },
   plugins: [
     `gatsby-plugin-sass`,
@@ -56,6 +58,7 @@ module.exports = {
       },
     },
     `gatsby-plugin-playground`,
-    `gatsby-plugin-transition-link`
+    `gatsby-plugin-transition-link`,
+    `gatsby-plugin-react-helmet`
   ]
 }
