@@ -4,10 +4,12 @@ import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
 import Button from "../components/button"
 import StyledHero from "../components/styledHero"
+import SEO from "../components/SEO"
 
 export default ({ data }) => {
   return (
     <Layout>
+      <SEO title={"home"} description={"this is description"}/>
       <StyledHero home="true" img={data.defaultBcg.childImageSharp.fluid}>
         <h1 className="title">
           Hello, This is our home page
