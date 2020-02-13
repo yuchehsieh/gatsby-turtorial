@@ -2,10 +2,12 @@ import React from "react"
 import Layout from "../components/layout"
 import ToursComponent from "../components/tours/tours"
 import { graphql } from "gatsby"
+import SEO from "../components/SEO"
 
 const Tours = ({ data }) => {
     return (
       <Layout>
+        <SEO title="Tours"/>
         hello from tours page
         <ToursComponent tours={data.tours.edges}/>
       </Layout>

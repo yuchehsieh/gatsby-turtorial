@@ -4,6 +4,7 @@ import Image from "gatsby-image"
 import { FaMap, FaMoneyBillWave } from "react-icons/fa"
 import styles from "../css/template.module.css"
 import Layout from "../components/layout"
+import SEO from "../components/SEO"
 
 const TourTemplates = ({ data }) => {
 
@@ -11,6 +12,7 @@ const TourTemplates = ({ data }) => {
 
   return (
     <Layout>
+      <SEO title={name}/>
       <section className={styles.template}>
         <div className={styles.center}>
           <div className={styles.images}>

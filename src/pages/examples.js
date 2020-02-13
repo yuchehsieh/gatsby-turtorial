@@ -3,11 +3,13 @@ import {graphql} from 'gatsby';
 import HeaderHooks from '../examples/header-hooks';
 import HeaderStatic from "../examples/header-static"
 import Layout from "../components/layout"
+import SEO from "../components/SEO"
 
 const Examples = (props) => {
   console.log(props);
   return (
     <Layout>
+      <SEO title="Examples"/>
       examples page
       <HeaderHooks/>
       <HeaderStatic />
