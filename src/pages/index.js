@@ -9,7 +9,7 @@ import SEO from "../components/SEO"
 export default ({ data }) => {
   return (
     <Layout>
-      <SEO title={"home"} description={"this is description"}/>
+      <SEO title={"Home"} description={"this is home page's description"}/>
       <StyledHero home="true" img={data.defaultBcg.childImageSharp.fluid}>
         <h1 className="title">
           Hello, This is our home page

@@ -4,13 +4,16 @@
  * See: https://www.gatsbyjs.org/docs/gatsby-config/
  */
 
+/**
+ * Learn about environment variables: https://gatsby.dev/env-vars
+ */
 require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 })
 
 module.exports = {
   siteMetadata: {
-    title: 'tutorial',
+    title: 'Gatsby Tutorial',
     description: 'just some description about our site',
     author: '@murphy',
     twitterUsername: '@murphy_hsieh',
