@@ -28,6 +28,9 @@ class Navbar extends Component {
           <li>
             <AniLink fade to="/tours">Tours</AniLink>
           </li>
+          <li>
+            <AniLink fade to="/httpTest">Http Test</AniLink>
+          </li>
         </ul>
       </nav>
     )
