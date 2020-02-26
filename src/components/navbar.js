@@ -1,8 +1,10 @@
 import React, { Component } from "react"
 // import { Link } from "gatsby"
 import AniLink from "gatsby-plugin-transition-link/AniLink";
+import { injectIntl } from 'gatsby-plugin-intl'
 
 import styles from './navbar.module.scss';
+
 
 class Navbar extends Component {
   render() {
@@ -29,7 +31,10 @@ class Navbar extends Component {
             <AniLink fade to="/tours">Tours</AniLink>
           </li>
           <li>
-            <AniLink fade to="/httpTest">Http Test</AniLink>
+            <AniLink fade to="/httpTest">{this.props.intl.formatMessage({ id: 'Http Test'})}</AniLink>
+          </li>
+          <li>
+            <AniLink fade to="/hoda">Hoda</AniLink>
           </li>
         </ul>
       </nav>
@@ -37,4 +42,4 @@ class Navbar extends Component {
   }
 }
 
-export default Navbar
+export default injectIntl(Navbar);
