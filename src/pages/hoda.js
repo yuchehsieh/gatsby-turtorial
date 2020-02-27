@@ -75,21 +75,53 @@ class Hoda extends Component {
     })
   }
 
-  onFormSubmit(event) {
+  async onFormSubmit(event) {
     event.preventDefault();
 
-    const name = validate(this.state.name);
-    const password = validate(this.state.password);
+    const name = { ... this.state.name};
+    const password = { ...this.state.password};
 
+    const dataToSubmit = { name, password };
+    let allCorrect = true;
+
+    for(let key in dataToSubmit) {
+      let datum = dataToSubmit[key];
+      datum = validate(datum);
+      allCorrect = allCorrect && datum.valid;
+    }
     /**
      * the only chance that valid will be true
      */
 
-    console.log(name.valid);
-    console.log(password.valid);
+    if(!allCorrect) {
+      this.setState({...dataToSubmit});
+      return;
+    }
 
+    await this.createUser(dataToSubmit);
+    // this.setState({name, id});
 
-    this.setState({name, password})
+  }
+
+  async createUser(data) {
+    let extractedValue = {};
+    for(let key in data) {
+      const capitalizeKey = key.charAt(0).toUpperCase() + key.slice(1)
+      extractedValue[capitalizeKey] = data[key].value;
+    }
+    let formdata = new FormData();
+    formdata.append("user", JSON.stringify(extractedValue))
+    debugger;
+
+    try {
+      const response = await axios.put(`${BASE_URL}/user`, formdata);
+      const user = response.data
+      debugger;
+    } catch(e) {
+      console.log(e);
+      return false;
+    }
+
   }
 
   render() {
