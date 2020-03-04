@@ -1,127 +1,190 @@
-import React, { Component } from "react";
+import React, { Component } from "react"
 import Layout from "../components/layout"
-import axios from 'axios';
-import FormFields from "../components/ui/formFields";
-import {validate} from '../components/ui/validate';
+import axios from "axios"
+import FormFields from "../components/ui/formFields"
+import { validate } from "../components/ui/validate"
 
-const BASE_URL = `http://hodatest.azurewebsites.net`;
+const BASE_URL = `https://hodatest.azurewebsites.net`
+const windowsLocalStorage = window.localStorage
 
 class Hoda extends Component {
 
   constructor(props) {
-    super(props);
+    super(props)
 
-    this.onFormSubmit = this.onFormSubmit.bind(this);
+    this.onFormSubmit = this.onFormSubmit.bind(this)
     this.state = {
       users: [],
       name: {
-        element: 'input',
-        value: '', /** event.target.value **/
+        element: "input",
+        value: "", /** event.target.value **/
         config: {
-          label: 'Name',
-          name: 'name_input', /** event.target.name **/
-          type: 'text'
+          label: "Name",
+          name: "name_input", /** event.target.name **/
+          type: "text",
         },
         validation: { required: true },
         valid: false,
-        validationMessage: '',
+        validationMessage: "",
       },
       password: {
-        element: 'input',
-        value: '',
+        element: "input",
+        value: "",
         config: {
-          label: 'Password',
-          name: 'password_input',
-          type: 'password'
+          label: "Password",
+          name: "password_input",
+          type: "password",
         },
         validation: { required: true },
         valid: false,
-        validationMessage: '',
+        validationMessage: "",
       },
+      isLogin: false,
+      userName: null,
     }
   }
 
   async componentDidMount() {
-    const users = await this.fetchUsers();
-    if(!users) {
-      return;
+    const users = await this.fetchUsers()
+    if (!users) {
+      return
     }
-    this.setState({users})
+
+    const token = windowsLocalStorage.getItem("token")
+    if (token) {
+    debugger;
+      const { Name: userName } = await this.getLoginUserInfo(token)
+      if (userName) {
+        this.setState({ isLogin: true, userName })
+      }
+    }
+
+    this.setState({ users })
   }
 
   async fetchUsers() {
     try {
       const response = await axios.get(`${BASE_URL}/users`, {
         headers: {
-          'Access-Control-Allow-Origin': '*',
-          'crossdomain': true
-        }
-      });
+          "Access-Control-Allow-Origin": "*",
+          "crossdomain": true,
+        },
+      })
       const users = response.data
-      return users;
+      return users
     } catch {
-      return false;
+      return false
     }
   }
 
   onChange(event, fieldName) {
-    const value =  event.target.value;
-    const newElement = this.state[fieldName];
-    newElement.value = value;
-    newElement.valid = false;
-    newElement.validationMessage = '';
+    const value = event.target.value
+    const newElement = this.state[fieldName]
+    newElement.value = value
+    newElement.valid = false
+    newElement.validationMessage = ""
     this.setState({
-      [fieldName]: newElement
+      [fieldName]: newElement,
     })
   }
 
-  async onFormSubmit(event) {
-    event.preventDefault();
+  async onFormSubmit(event, actionType) {
+    event.preventDefault()
 
-    const name = { ... this.state.name};
-    const password = { ...this.state.password};
+    if (!actionType) {
+      return
+    }
 
-    const dataToSubmit = { name, password };
-    let allCorrect = true;
+    const name = { ...this.state.name }
+    const password = { ...this.state.password }
+    let dataToSubmit = { name, password }
 
-    for(let key in dataToSubmit) {
-      let datum = dataToSubmit[key];
-      datum = validate(datum);
-      allCorrect = allCorrect && datum.valid;
+
+    let allCorrect = true
+
+    for (let key in dataToSubmit) {
+      let datum = dataToSubmit[key]
+      datum = validate(datum)
+      allCorrect = allCorrect && datum.valid
     }
     /**
      * the only chance that valid will be true
      */
 
-    if(!allCorrect) {
-      this.setState({...dataToSubmit});
-      return;
+    if (!allCorrect) {
+      this.setState({ ...dataToSubmit })
+      return
     }
 
-    await this.createUser(dataToSubmit);
-    // this.setState({name, id});
+    let isSuccess = false
+
+
+    if (actionType === ActionType.REGISTER) {
+      isSuccess = await this.createUser(dataToSubmit)
+    }
+    if (actionType === ActionType.LOGIN) {
+      isSuccess = await this.login(dataToSubmit)
+    }
+
+    if (isSuccess) {
+      let users = await this.fetchUsers()
+      this.setState({ isLogin: true, users })
+    }
 
   }
 
   async createUser(data) {
-    let extractedValue = {};
-    for(let key in data) {
-      const capitalizeKey = key.charAt(0).toUpperCase() + key.slice(1)
-      extractedValue[capitalizeKey] = data[key].value;
+    let extractedValue = {}
+    for (let key in data) {
+      const capitalizeKey = capitalize(key)
+      extractedValue[capitalizeKey] = data[key].value
     }
-    let formdata = new FormData();
-    formdata.append("user", JSON.stringify(extractedValue))
-    debugger;
 
     try {
-      const response = await axios.put(`${BASE_URL}/user`, formdata);
+      const response = await axios.put(`${BASE_URL}/user`, extractedValue)
       const user = response.data
-      debugger;
-    } catch(e) {
-      console.log(e);
-      return false;
+    debugger;
+      return true
+    } catch (e) {
+      console.log(e)
+      alert("Create Fail")
+      return false
+    }
+  }
+
+  async login(data) {
+    let extractedValue = {}
+    for (let key in data) {
+      const capitalizeKey = capitalize(key)
+      extractedValue[capitalizeKey] = data[key].value
     }
 
+    try {
+      const response = await axios.post(`${BASE_URL}/login`, extractedValue)
+      const data = response.data
+      const token = data[0].Token
+      windowsLocalStorage.setItem("token", token)
+    debugger;
+      return true
+    } catch (e) {
+      console.log(e)
+      alert("Login Fail")
+      return false
+    }
+  }
+
+  async getLoginUserInfo(token) {
+    try {
+      const response = await axios.get(`${BASE_URL}/user`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      const data = response.data
+      const user = data[0]
+      return user
+    } catch (e) {
+      console.log(e)
+      return false
+    }
   }
 
   render() {
@@ -136,21 +199,42 @@ class Hoda extends Component {
           ))}
         </ul>
         <hr/>
-        <form onSubmit={this.onFormSubmit}>
+        <h1>Create User</h1>
+        <form onSubmit={e => this.onFormSubmit(e)}>
           <FormFields
-            id={'name'}
+            id={"name"}
             formdata={this.state.name}
             onChange={this.onChange.bind(this)}
           />
           <FormFields
-            id={'password'}
+            id={"password"}
             formdata={this.state.password}
             onChange={this.onChange.bind(this)}
           />
-          <button type="submit" onClick={this.onFormSubmit}>Submit</button>
         </form>
+        <button type="submit" onClick={e => this.onFormSubmit(e, ActionType.REGISTER)}>Create User</button>
+        <button type="submit" onClick={e => this.onFormSubmit(e, ActionType.LOGIN)}>Login</button>
+        {this.state.isLogin &&
+        <div>
+          <h2>You are successfully login</h2>
+          <h4>Hello, {this.state.userName}</h4>
+        </div>
+        }
       </Layout>
     )
+  }
+}
+
+const ActionType = {
+  LOGIN: "login",
+  REGISTER: "register",
+}
+
+const capitalize = (name) => {
+  if (name) {
+    return name.charAt(0).toUpperCase() + name.slice(1)
+  } else {
+    return null
   }
 }
 
