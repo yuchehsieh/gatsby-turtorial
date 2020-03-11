@@ -12,6 +12,7 @@ class Hoda extends Component {
   constructor(props) {
     super(props)
 
+    this.onImageChange = this.onImageChange.bind(this)
     this.onFormSubmit = this.onFormSubmit.bind(this)
     this.state = {
       users: [],
@@ -41,6 +42,9 @@ class Hoda extends Component {
       },
       isLogin: false,
       userName: null,
+      image: {
+        src: null,
+      },
     }
   }
 
@@ -65,11 +69,16 @@ class Hoda extends Component {
   async fetchUsers() {
     try {
       const response = await axios.get(`${BASE_URL}/users`, {
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "crossdomain": true,
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+            "crossdomain": true,
+          },
         },
-      })
+        // {
+        //   onDownloadProgress: progressEvent => {
+        //     console.log("Upload Progress: " + progressEvent.loaded / progressEvent.total)
+        //   },
+      )
       const users = response.data
       return users
     } catch {
@@ -141,7 +150,11 @@ class Hoda extends Component {
     }
 
     try {
-      const response = await axios.put(`${BASE_URL}/user`, extractedValue)
+      const response = await axios.put(`${BASE_URL}/user`, extractedValue, {
+        onUploadProgress: progressEvent => {
+          console.log("Upload Progress: " + progressEvent.loaded / progressEvent.total)
+        },
+      })
       const user = response.data
     debugger;
       return true
@@ -220,9 +233,44 @@ class Hoda extends Component {
           <h4>Hello, {this.state.userName}</h4>
         </div>
         }
+        <hr/>
+        <input type="file" onChange={this.onImageChange}/>
+        <img src={this.state.image.src || ''} style={{ height: '5em' }}/>
       </Layout>
     )
   }
+
+  async onImageChange(event) {
+    let currentTarget = event.currentTarget
+
+    let selectedFiles = currentTarget.files
+    if (selectedFiles.length === 0) return
+
+    let file = selectedFiles[0]
+
+    try {
+      let base64 = await toBase64(file)
+      console.log(base64)
+      this.setState({ image: { src: base64 } })
+    debugger
+    } catch (e) {
+      console.log(e)
+    }
+  }
+}
+
+const toBase64 = (file) => {
+  return new Promise(((resolve, reject) => {
+      let reader = new FileReader()
+      reader.onload = () => {
+        resolve(reader.result)
+      }
+      reader.onerror = () => {
+        reject(reader.error)
+      }
+      reader.readAsDataURL(file)
+    }
+  ))
 }
 
 const ActionType = {
