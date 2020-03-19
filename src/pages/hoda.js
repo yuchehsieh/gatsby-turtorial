@@ -249,10 +249,19 @@ class Hoda extends Component {
     let file = selectedFiles[0]
 
     try {
-      let base64 = await toBase64(file)
-      console.log(base64)
-      this.setState({ image: { src: base64 } })
-    debugger
+      let dataUrl = await toBase64(file);
+
+      this.setState({ image: { src: dataUrl } });
+
+      // let blob = await base64ToBlob(dataUrl);
+      /*** FileReader ***/
+      // let reader = new FileReader();
+      // reader.readAsArrayBuffer(blob);
+      //
+      /*** createObjectURL ***/
+      // let objectUrl = URL.createObjectURL(blob);
+
+      debugger
     } catch (e) {
       console.log(e)
     }
@@ -271,6 +280,18 @@ const toBase64 = (file) => {
       reader.readAsDataURL(file)
     }
   ))
+}
+
+const base64ToBlob = (dataURI) => {
+
+  let byteString = atob(dataURI.split(',')[1]);
+  let ab = new ArrayBuffer(byteString.length);
+  let ia = new Uint8Array(ab);
+
+  for (let i = 0; i < byteString.length; i++) {
+    ia[i] = byteString.charCodeAt(i);
+  }
+  return new Blob([ab], { type: 'image/jpeg' });
 }
 
 const ActionType = {
