@@ -3,6 +3,9 @@ import Layout from "../components/layout"
 import axios from "axios"
 import FormFields from "../components/ui/formFields"
 import { validate } from "../components/ui/validate"
+import PieDemo from "../components/hoda_test/pieDemo"
+import BarDemo from "../components/hoda_test/barDemo"
+import LineDemo from "../components/hoda_test/lineDemo"
 
 const BASE_URL = `https://hodatest.azurewebsites.net`
 const windowsLocalStorage = window.localStorage
@@ -56,7 +59,6 @@ class Hoda extends Component {
 
     const token = windowsLocalStorage.getItem("token")
     if (token) {
-    debugger;
       const { Name: userName } = await this.getLoginUserInfo(token)
       if (userName) {
         this.setState({ isLogin: true, userName })
@@ -203,6 +205,11 @@ class Hoda extends Component {
   render() {
     return (
       <Layout>
+        <div style={{display: 'flex'}}>
+          <PieDemo/>
+          <LineDemo/>
+          <BarDemo/>
+        </div>
         <h1>Hello from hoda page!</h1>
         <ul>
           {this.state.users.map(user => (
@@ -235,7 +242,7 @@ class Hoda extends Component {
         }
         <hr/>
         <input type="file" onChange={this.onImageChange}/>
-        <img src={this.state.image.src || ''} style={{ height: '5em' }}/>
+        <img src={this.state.image.src || ""} style={{ height: "5em" }}/>
       </Layout>
     )
   }
@@ -249,9 +256,9 @@ class Hoda extends Component {
     let file = selectedFiles[0]
 
     try {
-      let dataUrl = await toBase64(file);
+      let dataUrl = await toBase64(file)
 
-      this.setState({ image: { src: dataUrl } });
+      this.setState({ image: { src: dataUrl } })
 
       // let blob = await base64ToBlob(dataUrl);
       /*** FileReader ***/
@@ -260,8 +267,6 @@ class Hoda extends Component {
       //
       /*** createObjectURL ***/
       // let objectUrl = URL.createObjectURL(blob);
-
-      debugger
     } catch (e) {
       console.log(e)
     }
@@ -284,14 +289,14 @@ const toBase64 = (file) => {
 
 const base64ToBlob = (dataURI) => {
 
-  let byteString = atob(dataURI.split(',')[1]);
-  let ab = new ArrayBuffer(byteString.length);
-  let ia = new Uint8Array(ab);
+  let byteString = atob(dataURI.split(",")[1])
+  let ab = new ArrayBuffer(byteString.length)
+  let ia = new Uint8Array(ab)
 
   for (let i = 0; i < byteString.length; i++) {
-    ia[i] = byteString.charCodeAt(i);
+    ia[i] = byteString.charCodeAt(i)
   }
-  return new Blob([ab], { type: 'image/jpeg' });
+  return new Blob([ab], { type: "image/jpeg" })
 }
 
 const ActionType = {
