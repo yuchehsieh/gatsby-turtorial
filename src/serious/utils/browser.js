@@ -1,12 +1,16 @@
+import _ from './helper';
+
 const navigatorGlobal = typeof navigator !== 'undefined' && navigator
+
+
 
 class Browser {
   language() {
-    return navigatorGlobal.language;
+    return _.isValid(navigatorGlobal) && navigatorGlobal.language || "zh-TW";
   }
 
   languages() {
-    return navigatorGlobal.languages;
+    return _.isValid(navigatorGlobal) && navigatorGlobal.languages ||  ["zh-TW", "zh", "en-US", "en"];
   }
 
   locale() {
