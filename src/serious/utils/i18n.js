@@ -199,6 +199,7 @@ class I18n {
 
   }
   toLocale(language) {
+    if(typeof language !== "string") return;
     let tokens = language.split('-');
 
     return {
