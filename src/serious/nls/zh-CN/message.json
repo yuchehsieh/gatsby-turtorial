@@ -1,0 +1,17 @@
+{
+  "size must be between:${0} and ${1}":"长度需介于${0}到${1}",
+  "must be less than or equal to ${0}":"必需小于或等于${0}",
+  "must be greater than or equal to ${0}":"必需大于或等于${0}",
+  "Please input ${0} or less than ${0} digits and ${1} or less than ${1} decimal places":"请输入${0}或小于${0}位的整数及${1}位或小于${1}位的小数",
+  "Please input ${0} or less than ${0} digits":"请输入${0}位或小于${0}位的数字",
+  "may not be null:${0}":"${0}必填",
+  "This field is required.":"必填",
+
+  "Login failed: Username / password mismatch.":"登入失败：帐号或密码不正确．",
+
+  "Service is temporarily unavailable.":"暂时无法提供服务，请稍后再试．",
+  "Authentication is required.":"需要身份验证．请登入你的帐号",
+  "Access denied.":"拒绝存取．你没有足够的权限使用这项服务．",
+  "Multiple sessions not support.":"不支援在一个浏览器内执行多个工作阶段．",
+  "Login timeout.":"连线失效．请重新登入．"
+}

@@ -1,0 +1,11 @@
+{
+  "datetimePattern": "yyyy/MM/dd HH:mm:ss",
+  "datePattern": "yyyy/MM/dd",
+  "monthPattern": "yyyy/MM",
+  "timePattern" : "HH:mm",
+  "currencyPattern" : "$#,##0.##",
+  "numberPattern" : "#,##0.##",
+  "currencySign": "$",
+  "groupingSeparator": ",",
+  "decimalSeparator" : "."
+}

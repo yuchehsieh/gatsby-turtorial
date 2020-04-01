@@ -1,0 +1,8 @@
+{
+  "Service is temporarily unavailable.":"Service is temporarily unavailable, please try again later.",
+  "Authentication is required.":"Authentication is required. Please sign into your account.",
+  "Access denied.":"Access denied. You do not have permissions to perform this operation.'",
+  "Multiple sessions not support.":"Multiple sessions not support in the same browser.",
+  "Login timeout.":"Login timeout. Please sign in again.",
+  "Internal server error.":"Internal server error. Please exit and try again later."
+}

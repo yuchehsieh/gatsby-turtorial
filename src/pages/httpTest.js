@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import Layout from "../components/layout"
 import SEO from "../components/SEO";
 import axios from 'axios';
-import { injectIntl, Link, FormattedMessage } from "gatsby-plugin-intl"
+// import { injectIntl, Link, FormattedMessage } from "gatsby-plugin-intl"
 
 class HttpTest extends Component {
 
@@ -25,7 +25,7 @@ class HttpTest extends Component {
   render() {
     return (
       <Layout>
-        <SEO title={this.props.intl.formatMessage({ id: 'Http Test' })}/>
+        {/*<SEO title={this.props.intl.formatMessage({ id: 'Http Test' })}/>*/}
         hello this is http test page
         <ul>
         {this.state.users.map(user => (
@@ -34,16 +34,16 @@ class HttpTest extends Component {
         </ul>
         <hr />
         <h1>Test i18n as well</h1>
-        <h2>Translate "hello", using this.props.intl.formatMessage method: {this.props.intl.formatMessage({ id: "hello"})}</h2>
+        <h2></h2>
         <h2>Translate "hello", using FormattedMessage component:
-          <FormattedMessage id={"hello"}/>
+          {/*<FormattedMessage id={"hello"}/>*/}
         </h2>
-        <FormattedMessage id={"testData"}/>
+        {/*<FormattedMessage id={"testData"}/>*/}
         <br/>
-        <FormattedMessage id={"This message does not exist in zh.json file"}/>
+        {/*<FormattedMessage id={"This message does not exist in zh.json file"}/>*/}
       </Layout>
     )
   }
 }
 
-export default injectIntl(HttpTest);
+export default HttpTest

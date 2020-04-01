@@ -3,12 +3,14 @@ import Layout from "../components/layout"
 import axios from "axios"
 import FormFields from "../components/ui/formFields"
 import { validate } from "../components/ui/validate"
-import PieDemo from "../components/hoda_test/pieDemo"
-import BarDemo from "../components/hoda_test/barDemo"
-import LineDemo from "../components/hoda_test/lineDemo"
+import PieDemo from "../components/hoda_chart_test/pieDemo"
+import BarDemo from "../components/hoda_chart_test/barDemo"
+import LineDemo from "../components/hoda_chart_test/lineDemo"
 
 const BASE_URL = `https://hodatest.azurewebsites.net`
-const windowsLocalStorage = window.localStorage
+
+const windowGlobal = typeof window !== 'undefined' && window
+const windowsLocalStorage = windowGlobal.localStorage
 
 class Hoda extends Component {
 

@@ -1,0 +1,10 @@
+{
+  "datetimePattern": "yyyy-MM-dd HH:mm:ss",
+  "datePattern": "yyyy-MM-dd",
+  "monthPattern": "yyyy-MM",
+  "timePattern": "HH:mm:ss",
+  "numberPattern": "#,##0.##",
+  "currencyPattern": "$#,##0.##",
+  "title": "Test",
+  "copyright": "© 2015 uWeaver"
+}

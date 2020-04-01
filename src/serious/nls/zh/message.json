@@ -1,0 +1,32 @@
+{
+  "size must be between:${0} and ${1}":"長度需介於${0}到${1}",
+  "must be less than or equal to ${0}":"必需小於或等於${0}",
+  "must be greater than or equal to ${0}":"必需大於或等於${0}",
+  "Please input ${0} or less than ${0} digits and ${1} or less than ${1} decimal places":"請輸入${0}或小於${0}位的整數及${1}位或小於${1}位的小數",
+  "Please input ${0} or less than ${0} digits":"請輸入${0}位或小於${0}位的數字",
+  "may not be null:${0}":"${0}必填",
+  "may not be null":"必填",
+  "This field is required.":"必填",
+
+  "Login failed: Username / password mismatch.":"登入失敗：帳號或密碼不正確．",
+
+  "Service is temporarily unavailable.":"暫時無法提供服務，請稍後再試．",
+  "Authentication is required.":"需要身份驗證．請登入你的帳號",
+  "Access denied.":"拒絕存取．你沒有足夠的權限使用這項服務．",
+  "Multiple sessions not support.":"不支援在一個瀏覽器內執行多個工作階段．",
+  "Login timeout.":"連線失效．請重新登入．",
+
+  "Save changes?": "儲存變更？",
+  "Do you want to save changes made to this item?": "確定要儲存/變更指定項目？",
+
+  "Delete the item?": "確認刪除?",
+  "Are you sure you want to delete this item?": "確定要刪除指定項目?",
+  "The same data already exists": "相同資料已經存在",
+  "The data has been used and cannot be deleted": "資料已經被使用,無法刪除",
+  "Please input at least one criteria": "請至少輸入一個查詢條件",
+  "Total receipts must be greater than 0": "收款合計須大於0",
+  "Please select write off info": "請選擇沖帳資料",
+  "The received amount is not equal to the written off amount": "收款金額與沖帳金額不相等",
+  "Please select at least one order": "請至少選擇一張訂單",
+  "The written off amount must be less than or equal to actual sales amount minus received amount": "沖帳金額需小於等於應收帳款檢已收款金額"
+}

@@ -1,13 +1,13 @@
 import React from "react"
-import { injectIntl } from "gatsby-plugin-intl"
+// import { injectIntl } from "gatsby-plugin-intl"
 
 const FormFields = ({ id, formdata, onChange, intl }) => {
   const showError = () => {
     let errorMessage = (
       <div className="error_label" >
-        {formdata.validation && formdata.validationMessage.trim() !== ''
-          ? intl.formatMessage({ id: formdata.validationMessage })
-          : null}
+        {/*{formdata.validation && formdata.validationMessage.trim() !== ''*/}
+        {/*  ? intl.formatMessage({ id: formdata.validationMessage })*/}
+        {/*  : null}*/}
       </div>
     )
     return errorMessage
@@ -20,7 +20,7 @@ const FormFields = ({ id, formdata, onChange, intl }) => {
       case "input":
         formTemplate = (
           <div>
-            <div className="label_inputs">{intl.formatMessage({ id: formdata.config.label })}</div>
+            {/*<div className="label_inputs">{intl.formatMessage({ id: formdata.config.label })}</div>*/}
             <input
               {...formdata.config}
               value={formdata.value}
@@ -66,4 +66,4 @@ const FormFields = ({ id, formdata, onChange, intl }) => {
   return <div>{renderTemplate()}</div>
 }
 
-export default injectIntl(FormFields)
+export default FormFields
