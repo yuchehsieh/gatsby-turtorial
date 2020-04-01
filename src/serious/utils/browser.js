@@ -1,10 +1,12 @@
+const navigatorGlobal = typeof navigator !== 'undefined' && navigator
+
 class Browser {
   language() {
-    return navigator.language;
+    return navigatorGlobal.language;
   }
 
   languages() {
-    return navigator.languages;
+    return navigatorGlobal.languages;
   }
 
   locale() {
