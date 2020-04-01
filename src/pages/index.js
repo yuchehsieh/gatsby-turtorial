@@ -18,7 +18,8 @@ class App extends Component {
 
   async initialize() {
     // await environment.ready();
-    await i18n.initialize(['en-US', 'zh-TW', 'zh-CN']);
+    // await i18n.initialize(['en-US', 'zh-TW', 'zh-CN']);
+    await i18n.initialize(['zh-TW']);
   }
 
   render() {

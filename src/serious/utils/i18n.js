@@ -2,6 +2,14 @@ import _ from './helper';
 import browser from './browser';
 import environment from './enviroment';
 
+import ZHTW_APP from '../nls/zh-TW/app';
+import ZHTW_TERM from '../nls/zh-TW/term';
+import ZHTW_MESSAGE from '../nls/zh-TW/message';
+
+import ZH_APP from '../nls/zh/app';
+import ZH_TERM from '../nls/zh/term';
+import ZH_MESSAGE from '../nls/zh/message';
+
 class I18n {
   dictionaries = new Map();
   DEFAULTPATTERN = {
@@ -56,15 +64,29 @@ class I18n {
   }
 
   async fetchBook(namespace, language) {
-    let url = `./nls/${language}/${namespace}.json`;
-    let response = await fetch(url,{mode: 'no-cors'});
+  // let url = `./nls/${language}/${namespace}.json`;
+    // let data;
+    // let response = await fetch(url,{mode: 'no-cors'});
+    // try {
+    //   data = await response.json();
+    // } catch(err) {
+    //   console.log(err);
+    //   data = {};
+    // }
+
+    const url = namespace + '/' + language;
     let data;
-    try {
-      data = await response.json();
-    } catch(err) {
-      console.log(err);
-      data = {};
+
+    switch(url) {
+      case 'app/zh-TW': data = ZHTW_APP; break;
+      case 'term/zh-TW': data = ZHTW_TERM; break;
+      case 'message/zh-TW': data = ZHTW_MESSAGE; break;
+      case 'app/zh': data = ZH_APP; break;
+      case 'term/zh': data = ZH_TERM; break;
+      case 'message/zh': data = ZH_MESSAGE; break;
+      default: data = {};
     }
+
     let book = new Map();
     for(let key in data) {
       book.set(key.toLowerCase(), data[key]);
